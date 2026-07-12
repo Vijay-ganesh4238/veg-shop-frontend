@@ -6,8 +6,12 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 const app = express();
-app.use(cors());
-app.use(express.json());
+// Remove the old app.use(cors()) line and paste this:
+app.use(cors({
+  origin: "*", 
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 
 const server = http.createServer(app);
 const io = new Server(server, {
