@@ -62,9 +62,10 @@ function App() {
     const endpoint = isSignUp ? '/api/auth/register' : '/api/auth/login';
     
     try {
-      // Clean and fixed fetch URL!
-     // ✅ Universally accessible cloud backend endpoint
-      const backendUrl = `https://veg-shop-backend.onrender.com${endpoint}`;
+      // Make sure there is NO trailing slash at the end of the URL string!
+      const RENDER_BACKEND_URL = "https://veg-shop-backend.onrender.com";
+      const backendUrl = `${RENDER_BACKEND_URL}${endpoint}`;
+      
       const response = await fetch(backendUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -133,7 +134,7 @@ function App() {
         
         {/* Dynamic Notification Popup Toast */}
         {notification && (
-          <div style={{ position: 'fixed', top: '20px', right: '20px', backgroundColor: '#333', color: '#fff', padding: '15px 25px', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.15)', zIndex: 1000, fontWeight: 'bold', animation: 'fadeIn 0.5s' }}>
+          <div style={{ position: 'fixed', top: '20px', right: '20px', backgroundColor: '#333', color: '#fff', padding: '15px 25px', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.15)', zIndex: 1000, fontWeight: 'bold' }}>
             {notification}
           </div>
         )}
