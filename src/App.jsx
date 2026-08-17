@@ -95,7 +95,7 @@ function App() {
     const endpoint = isSignUp ? '/api/auth/register' : '/api/auth/login';
 
     try {
-      const response = await fetch(`http://localhost:5000${endpoint}`, {
+      const response = await fetch(`https://freshveg-backend-443z.onrender.com${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
