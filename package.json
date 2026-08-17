@@ -13,10 +13,12 @@
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "leaflet": "^1.9.4",
     "lucide-react": "^1.23.0",
     "mongoose": "^9.7.3",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
+    "react-leaflet": "^5.0.0",
     "socket.io-client": "^4.8.3"
   },
   "devDependencies": {
