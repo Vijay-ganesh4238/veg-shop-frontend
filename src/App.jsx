@@ -13,7 +13,7 @@ L.Icon.Default.mergeOptions({
 });
 
 // 👇 THE FIX IS RIGHT HERE! It points the entire frontend to your live server.
-const BACKEND_URL = 'https://freshveg-backend-443z.onrender.com';
+const BACKEND_URL = 'https://freshveg-backend-443z.onrender.com'; 
 const socket = io(BACKEND_URL);
 const steps = ["Order Placed", "Packed & Ready", "Out for Delivery", "Delivered"];
 
@@ -62,7 +62,7 @@ function App() {
 
   const fetchInventory = async () => {
     try {
-      const response = await fetch(`${BACKEND_URL}/api/vegetables`);
+      const response = await fetch(`'https://freshveg-backend-443z.onrender.com'/api/vegetables`);
       const data = await response.json();
       setVegetableStock(data);
     } catch (error) {
@@ -118,7 +118,7 @@ function App() {
 
   const fetchPastOrders = async () => {
     try {
-      const response = await fetch(`${BACKEND_URL}/api/orders/${username}`);
+      const response = await fetch(`'https://freshveg-backend-443z.onrender.com'/api/orders/${username}`);
       const data = await response.json();
       setPastOrders(data);
       setViewOrders(true);
@@ -134,7 +134,7 @@ function App() {
     if (!newVegName || !newVegPrice) return;
 
     try {
-      const response = await fetch(`${BACKEND_URL}/api/vegetables`, {
+      const response = await fetch(`'https://freshveg-backend-443z.onrender.com'/api/vegetables`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -161,7 +161,7 @@ function App() {
 
   const handleDeleteVegetable = async (id) => {
     try {
-      const response = await fetch(`${BACKEND_URL}/api/vegetables/${id}`, {
+      const response = await fetch(`'https://freshveg-backend-443z.onrender.com'/api/vegetables/${id}`, {
         method: 'DELETE'
       });
 
@@ -215,7 +215,7 @@ function App() {
     });
 
     try {
-      const response = await fetch(`${BACKEND_URL}/api/orders`, {
+      const response = await fetch(`'https://freshveg-backend-443z.onrender.com'/api/orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
