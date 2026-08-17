@@ -12,7 +12,9 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
 });
 
-const socket = io('https://freshveg-backend-443z.onrender.com');
+// 👇 THE FIX IS RIGHT HERE! It points the entire frontend to your live server.
+const BACKEND_URL = 'https://freshveg-backend-443z.onrender.com';
+const socket = io(BACKEND_URL);
 const steps = ["Order Placed", "Packed & Ready", "Out for Delivery", "Delivered"];
 
 function ChangeMapView({ coords }) {
@@ -60,7 +62,7 @@ function App() {
 
   const fetchInventory = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/vegetables');
+      const response = await fetch(`${BACKEND_URL}/api/vegetables`);
       const data = await response.json();
       setVegetableStock(data);
     } catch (error) {
@@ -95,7 +97,7 @@ function App() {
     const endpoint = isSignUp ? '/api/auth/register' : '/api/auth/login';
 
     try {
-      const response = await fetch(`https://freshveg-backend-443z.onrender.com${endpoint}`, {
+      const response = await fetch(`${BACKEND_URL}${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
@@ -116,7 +118,7 @@ function App() {
 
   const fetchPastOrders = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/orders/${username}`);
+      const response = await fetch(`${BACKEND_URL}/api/orders/${username}`);
       const data = await response.json();
       setPastOrders(data);
       setViewOrders(true);
@@ -132,7 +134,7 @@ function App() {
     if (!newVegName || !newVegPrice) return;
 
     try {
-      const response = await fetch('http://localhost:5000/api/vegetables', {
+      const response = await fetch(`${BACKEND_URL}/api/vegetables`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -159,7 +161,7 @@ function App() {
 
   const handleDeleteVegetable = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/vegetables/${id}`, {
+      const response = await fetch(`${BACKEND_URL}/api/vegetables/${id}`, {
         method: 'DELETE'
       });
 
@@ -213,7 +215,7 @@ function App() {
     });
 
     try {
-      const response = await fetch('http://localhost:5000/api/orders', {
+      const response = await fetch(`${BACKEND_URL}/api/orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
